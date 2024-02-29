@@ -1,6 +1,7 @@
 package com.wealthtracker.savingsaccountservice.controller;
 
 import com.wealthtracker.savingsaccountservice.dto.SavingsAccountDTO;
+import com.wealthtracker.savingsaccountservice.service.SavingsAccountService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -9,9 +10,15 @@ import java.util.List;
 @RequestMapping("savingsaccount")
 public class SavingsAccountController {
 
+    private SavingsAccountService savingsAccountService;
+
+    public SavingsAccountController(SavingsAccountService savingsAccountService){
+        this.savingsAccountService = savingsAccountService;
+    }
+
     @GetMapping("/getbyid/{id}")
     public SavingsAccountDTO getSavingsAccountById(@PathVariable long id){
-        return null;
+        return this.savingsAccountService.getSavingsAccountById(id);
     }
 
     @GetMapping("/getbyuser/{userId}")
